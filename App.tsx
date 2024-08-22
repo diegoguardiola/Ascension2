@@ -1,23 +1,27 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import Colors from './src/theme/colors';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import HomeScreen from './src/screens/HomeScreen';
+import ExerciseListScreen from './src/screens/ExerciseListScreen';
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Exercises" component={ExerciseListScreen} />
+    </Tab.Navigator>
+  );
+}
 
 const App = () => {
 
   return (
-    <View>
-        <Text>Hello</Text>
-        <AntDesign name='stepforward' size={25}/>
-    </View>
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
   )
 }
 
