@@ -8,12 +8,18 @@ const StartWorkoutScreen = () => {
   const [isFreestyleModalVisible, setFreestyleModalVisible] = useState(false);
   const [isTemplateListModalVisible, setTemplateListModalVisible] = useState(false);
   const [isCreateTemplateModalVisible, setCreateTemplateModalVisible] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+
+  const handleStartFreestyleWorkout = () => {
+    setStartTime(Date.now()); // Set the start time
+    setFreestyleModalVisible(true); // Open the modal
+  };
 
   return (
     <View style={styles.container}>
       <Button 
         title="Start a Freestyle Workout" 
-        onPress={() => setFreestyleModalVisible(true)} 
+        onPress={handleStartFreestyleWorkout}  
       />
       
       <Button 
@@ -30,6 +36,7 @@ const StartWorkoutScreen = () => {
       <FreestyleWorkoutModal 
         visible={isFreestyleModalVisible} 
         onClose={() => setFreestyleModalVisible(false)} 
+        startTime={startTime}
       />
       
       <TemplateListModal 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Modal, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Modal, Button, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import exerciseData from '../data/exerciseData';
 
 const ExerciseSelectionModal = ({ visible, onClose, onSelectExercise }) => {
@@ -7,20 +7,32 @@ const ExerciseSelectionModal = ({ visible, onClose, onSelectExercise }) => {
     <Modal visible={visible} transparent={true} animationType="slide">
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.title}>Select an Exercise</Text>
-          {exerciseData.map(exercise => (
-            <TouchableOpacity 
-              key={exercise.id} 
-              style={styles.exerciseItem}
-              onPress={() => {
-                onSelectExercise(exercise); // Add exercise to the list
-                onClose(); // Close the modal
-              }}
-            >
-              <Text style={styles.exerciseText}>{exercise.name}</Text>
+          {/* Top Bar with Cancel Button */}
+          <View style={styles.topBar}>
+            <TouchableOpacity onPress={onClose}>
+              <Text style={styles.cancelButton}>Cancel</Text>
             </TouchableOpacity>
-          ))}
-          <Button title="Close" onPress={onClose} />
+          </View>
+
+          <Text style={styles.title}>Select an Exercise</Text>
+          
+          {/* Scrollable List of Exercises */}
+          <ScrollView contentContainerStyle={styles.exerciseList}>
+            {exerciseData.map(exercise => (
+              <TouchableOpacity 
+                key={exercise.id} 
+                style={styles.exerciseItem}
+                onPress={() => {
+                  onSelectExercise(exercise); // Add exercise to the list
+                  onClose(); // Close the modal
+                }}
+              >
+                <Text style={styles.exerciseText}>{exercise.name}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+
+          {/* Bottom Bar or any other fixed footer (optional) */}
         </View>
       </View>
     </Modal>
@@ -40,10 +52,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
   },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginBottom: 10,
+    marginTop: 40,
+  },
+  cancelButton: {
+    color: 'red',
+    fontSize: 16,
+  },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
     marginBottom: 10,
+  },
+  exerciseList: {
+    paddingBottom: 20, // Space at the bottom of the list
   },
   exerciseItem: {
     padding: 15,

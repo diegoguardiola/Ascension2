@@ -5,16 +5,27 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ExerciseDetailsModal from './ExerciseDetailsModal';
 import SetRow from './SetRow';
 
-const ExerciseItem = ({ exercise }) => {
+const ExerciseItem = ({ exercise, onUpdateSets, index }) => {
   const [isDetailsModalVisible, setDetailsModalVisible] = useState(false);
-  const [sets, setSets] = useState([]);
+  const [sets, setSets] = useState(exercise.sets || []);
 
   const addSet = () => {
-    setSets([...sets, { id: sets.length + 1, weight: '', reps: '' }]);
+    const newSet = { id: sets.length + 1, weight: '', reps: '' };
+    const updatedSets = [...sets, newSet];
+    setSets(updatedSets);
+    onUpdateSets(index, updatedSets);
   };
 
   const removeSet = (id) => {
-    setSets(sets.filter(set => set.id !== id));
+    const updatedSets = sets.filter(set => set.id !== id);
+    setSets(updatedSets);
+    onUpdateSets(index, updatedSets);
+  };
+
+  const updateSet = (id, updatedSet) => {
+    const updatedSets = sets.map(set => (set.id === id ? updatedSet : set));
+    setSets(updatedSets);
+    onUpdateSets(index, updatedSets);
   };
 
   return (
@@ -32,9 +43,10 @@ const ExerciseItem = ({ exercise }) => {
               <Button title="Delete" onPress={() => removeSet(item.id)} color="red" />
             )}
           >
-            <SetRow set={item} onChangeSet={(updatedSet) => {
-              setSets(sets.map(s => (s.id === item.id ? updatedSet : s)));
-            }} />
+            <SetRow 
+              set={item} 
+              onChangeSet={(updatedSet) => updateSet(item.id, updatedSet)}
+            />
           </Swipeable>
         )}
         keyExtractor={(item) => item.id.toString()}

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ExerciseItem from './ExerciseItem';
 
-const SelectedExerciseList = ({ exercises }) => {
+const SelectedExerciseList = ({ exercises, onUpdateExerciseSets }) => {
   if (exercises.length === 0) {
     return <Text style={styles.noExercisesText}>No exercises added yet.</Text>;
   }
@@ -10,7 +10,12 @@ const SelectedExerciseList = ({ exercises }) => {
   return (
     <View style={styles.container}>
       {exercises.map((exercise, index) => (
-        <ExerciseItem key={index} exercise={exercise} />
+        <ExerciseItem 
+          key={index} 
+          exercise={exercise} 
+          index={index}
+          onUpdateSets={onUpdateExerciseSets}
+        />
       ))}
     </View>
   );
