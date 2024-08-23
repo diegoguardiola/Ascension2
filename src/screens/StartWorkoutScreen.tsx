@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
-import FreestyleWorkoutModal from '../components/start workout/FreestyleWorkoutModal';
-import TemplateListModal from '../components/start workout/TemplateListModal';
-import CreateTemplateModal from '../components/start workout/CreateTemplateModal';
+import FreestyleWorkoutModal from '../components/start workout/weight lifting/freestyle workout/FreestyleWorkoutModal';
+import TemplateListModal from '../components/start workout/weight lifting/from template/TemplateListModal';
+import CreateTemplateModal from '../components/start workout/weight lifting/create template/CreateTemplateModal';
 
 const StartWorkoutScreen = () => {
   const [isFreestyleModalVisible, setFreestyleModalVisible] = useState(false);

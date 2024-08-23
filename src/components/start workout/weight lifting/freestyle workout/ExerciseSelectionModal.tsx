@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Modal, Button, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import exerciseData from '../data/exerciseData';
+import exerciseData from '../../../data/exerciseData';
 
 const ExerciseSelectionModal = ({ visible, onClose, onSelectExercise }) => {
   return (
