@@ -1,13 +1,13 @@
 // exerciseData.js
 const exerciseData = [
     {
-      id: 1,
-      name: 'Push-Up',
-      description: 'A basic upper body exercise to strengthen chest and triceps.',
+      id: 1-1,
+      name: 'Sit-Up',
+      description: 'tba',
     },
     {
-      id: 2,
-      name: 'Squat',
+      id: 2-1,
+      name: 'Dumbbell Bench Press',
       description: 'A foundational lower body exercise that targets the quadriceps, hamstrings, and glutes.',
     },
     {

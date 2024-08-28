@@ -4,7 +4,7 @@ import SearchBar from '../components/exercise list/SearchBar';
 import ExerciseList from '../components/exercise list/ExerciseList';
 import ExerciseModal from '../components/exercise list/ExerciseModal';
 import CreateExerciseModal from '../components/exercise list/CreateExerciseModal';
-import exerciseData from '../components/data/exerciseData';
+import exerciseData from '../components/data/exerciseListData';
 
 const ExerciseListScreen = () => {
   const [isExerciseModalVisible, setExerciseModalVisible] = useState(false);

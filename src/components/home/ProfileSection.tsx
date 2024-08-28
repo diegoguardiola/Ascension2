@@ -1,14 +1,21 @@
 import React from 'react';
 import { View, Text, Image, Button, StyleSheet } from 'react-native';
 
-const ProfileSection = ({ onEditPress }) => {
+interface StatsProps {
+  firstName: string;
+  lastName: string;
+  onEditPress: () => void;  
+}
+
+const ProfileSection: React.FC<StatsProps> = ({firstName, lastName, onEditPress }) => {
   return (
     <View style={styles.container}>
       <Image 
         source={{ uri: 'https://via.placeholder.com/100' }} 
         style={styles.profilePic} 
       />
-      <Text style={styles.name}>John Doe</Text>
+      <Text style={styles.name}>{firstName}</Text>
+      <Text style={styles.name}>{lastName}</Text>
       <Button title="Edit Profile" onPress={onEditPress} />
     </View>
   );
