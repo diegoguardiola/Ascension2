@@ -1,0 +1,4 @@
+sum of total hours, cals, miles, etc
+	- pull all the data and calculate it on the app?
+	- calculate on the backend and pull the resulting data?
+	- keep a last known as a global variable and then pull data after last known date?

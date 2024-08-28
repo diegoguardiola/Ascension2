@@ -19,6 +19,39 @@ const HomeScreen = () => {
     setWorkoutModalVisible(true);
   };
 
+   // Calculate total statistics
+   const totalWorkouts = workoutData.length;
+   const totalCals = workoutData.reduce((total, workout) => total + workout.totalCal, 0);
+ 
+   const totalTimeInSeconds = workoutData.reduce((total, workout) => {
+     const [startH, startM, startS] = workout.startTime.split(':').map(Number);
+     const [endH, endM, endS] = workout.endTime.split(':').map(Number);
+     const workoutTime = (endH * 3600 + endM * 60 + endS) - (startH * 3600 + startM * 60 + startS);
+     return total + workoutTime;
+   }, 0);
+ 
+   const totalTime = `${Math.floor(totalTimeInSeconds / 3600)}h ${Math.floor((totalTimeInSeconds % 3600) / 60)}m`;
+ 
+   // Sum the totalMiles directly from each run workout
+  const totalMiles = workoutData.reduce((total, workout) => {
+    if (workout.type === 'run') {
+      return total + workout.totalMiles;
+    }
+    return total;
+  }, 0);
+
+   // Calculate total weight lifted
+  const totalWeight = workoutData.reduce((total, workout) => {
+    if (workout.type === 'strength') {
+      return total + workout.data.reduce((exerciseTotal, exercise) => {
+        return exerciseTotal + exercise.sets.reduce((setTotal, set) => {
+          return setTotal + (set.weight * set.reps);
+        }, 0);
+      }, 0);
+    }
+    return total;
+  }, 0);
+
   return (
     <View style={styles.container}>
       <ProfileSection 
@@ -26,15 +59,20 @@ const HomeScreen = () => {
         lastName={profileData.lastName}    
         onEditPress={() => setProfileEditModalVisible(true)} 
       />
-      <Badges {...statsData} />
+      <Badges
+        workouts={totalWorkouts}
+        totalTime={totalTime}
+        totalCals={totalCals}
+        totalMiles={totalMiles}
+        totalWeight={totalWeight} // Pass total weight to Badges component
+      />
       <ScrollView style={styles.scrollContainer}>
         <WorkoutList 
-          workouts={workoutData}  // Pass workout data to the WorkoutList component
+          workouts={workoutData}  
           onWorkoutPress={handleWorkoutPress} 
         />
       </ScrollView>
 
-      {/* Modals */}
       <WorkoutModal 
         visible={isWorkoutModalVisible} 
         workout={selectedWorkout} 
@@ -48,7 +86,7 @@ const HomeScreen = () => {
       
     </View>
   );
-};;
+};
 
 const styles = StyleSheet.create({
   container: {

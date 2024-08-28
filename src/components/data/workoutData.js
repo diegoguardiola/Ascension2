@@ -7,6 +7,7 @@ const workoutData = [
       endTime: "10:23:18",
       avgHR: 155,
       totalCal: 350,
+      totalMiles: 2.95,
       data: [
         { interval: 1, distance: 1, time: "00:07:12" },
         { interval: 2, distance: 1, time: "00:07:56" },
@@ -21,6 +22,7 @@ const workoutData = [
       endTime: "11:04:01",
       avgHR: 138,
       totalCal: 375,
+      totalWeight: 6720,
       data: [
         {
           id: 1,

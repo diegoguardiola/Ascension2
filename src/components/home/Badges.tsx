@@ -6,9 +6,10 @@ interface StatsProps {
     totalTime: string;
     totalCals: number;
     totalMiles: number;
+    totalWeight: number; // Include totalWeight in props
 }
 
-const Badges: React.FC<StatsProps> = ({ workouts, totalTime, totalCals, totalMiles }) => {
+const Badges: React.FC<StatsProps> = ({ workouts, totalTime, totalCals, totalMiles, totalWeight }) => {
     return (
         <View style={styles.badgesContainer}>
             <View style={styles.badge}>
@@ -26,6 +27,10 @@ const Badges: React.FC<StatsProps> = ({ workouts, totalTime, totalCals, totalMil
             <View style={styles.badge}>
                 <Text style={styles.badgeLabel}>Total Miles:</Text>
                 <Text style={styles.badgeValue}>{totalMiles}</Text>
+            </View>
+            <View style={styles.badge}>
+                <Text style={styles.badgeLabel}>Total Weight:</Text>
+                <Text style={styles.badgeValue}>{totalWeight} lbs</Text>
             </View>
         </View>
     );
