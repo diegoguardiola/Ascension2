@@ -1,34 +1,33 @@
 import React, { useState } from 'react';
-import { View, Button, Modal, ScrollView, StyleSheet, Text } from 'react-native';
-import ProgressSection from '../components/progress/Progress';
-import StrengthProgressModal from '../components/progress/Strength';
-import NutritionProgressModal from '../components/progress/Nutrition';
+import { View, Button, StyleSheet } from 'react-native';
+import ExerciseListModal from '../components/progress/strength/ExerciseListModal';
+import ExerciseDetailModal from '../components/progress/strength/ExerciseDetailModal';
+import singleExerciseData from '../components/data/singleExerciseData';
 
 const ProgressScreen = () => {
-  const [isStrengthModalVisible, setStrengthModalVisible] = useState(false);
-  const [isNutritionModalVisible, setNutritionModalVisible] = useState(false);
+  const [exercisesModalVisible, setExercisesModalVisible] = useState(false);
+  const [selectedExercise, setSelectedExercise] = useState(null);
+  const [exerciseDetailModalVisible, setExerciseDetailModalVisible] = useState(false);
+
+  const handleExerciseSelect = (exercise) => {
+    setSelectedExercise(exercise);
+    setExerciseDetailModalVisible(true);
+    setExercisesModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollContainer}>
-        <ProgressSection 
-          title="Strength Progress" 
-          onPress={() => setStrengthModalVisible(true)} 
-        />
-        <ProgressSection 
-          title="Nutrition Progress" 
-          onPress={() => setNutritionModalVisible(true)} 
-        />
-      </ScrollView>
-
-      {/* Modals */}
-      <StrengthProgressModal 
-        visible={isStrengthModalVisible} 
-        onClose={() => setStrengthModalVisible(false)} 
+      <Button title="Exercises" onPress={() => setExercisesModalVisible(true)} />
+      <ExerciseListModal
+        visible={exercisesModalVisible}
+        exercises={singleExerciseData}
+        onSelect={handleExerciseSelect}
+        onClose={() => setExercisesModalVisible(false)}
       />
-      <NutritionProgressModal 
-        visible={isNutritionModalVisible} 
-        onClose={() => setNutritionModalVisible(false)} 
+      <ExerciseDetailModal
+        visible={exerciseDetailModalVisible}
+        exercise={selectedExercise}
+        onClose={() => setExerciseDetailModalVisible(false)}
       />
     </View>
   );
@@ -38,10 +37,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-  },
-  scrollContainer: {
-    flex: 1,
-    marginVertical: 20,
+    backgroundColor: '#f5f5f5',
   },
 });
 

@@ -25,7 +25,7 @@ const workoutData = [
       totalWeight: 6720,
       data: [
         {
-          id: 1,
+          id: 1.1,
           name: 'Sit-Up',
           description: 'tba',
           sets: [
@@ -34,8 +34,8 @@ const workoutData = [
           ]
         },
         {
-          id: 2,
-          name: 'Dumbbell Bench Press',
+          id: 2.2,
+          name: 'Bench Press (Dumbbell)',
           description: 'tba',
           sets: [
             { id: 1, weight: 135, reps: 20 },

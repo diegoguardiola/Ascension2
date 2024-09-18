@@ -20,10 +20,12 @@ const FreestyleWorkoutModal = ({ visible, onClose, startTime }) => {
 
   const formatTime = (milliseconds) => {
     const totalSeconds = Math.floor(milliseconds / 1000);
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    const hours = Math.floor(totalSeconds / 3600); // Calculate total hours
+    const minutes = Math.floor((totalSeconds % 3600) / 60); // Calculate remaining minutes after extracting hours
+    const seconds = totalSeconds % 60; // Calculate remaining seconds after extracting hours and minutes
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
+  
 
   const handleAddExercise = (exercise) => {
     setSelectedExercises([...selectedExercises, { ...exercise, sets: [] }]);
