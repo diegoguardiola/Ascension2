@@ -1,40 +1,58 @@
 import React from 'react';
-import { View, Text, Image, Button, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import colors from '../../assets/colors';
+import fonts from '../../assets/fonts';
 
 interface StatsProps {
   firstName: string;
   lastName: string;
-  onEditPress: () => void;  
 }
 
-const ProfileSection: React.FC<StatsProps> = ({firstName, lastName, onEditPress }) => {
+const ProfileSection: React.FC<StatsProps> = ({ firstName, lastName }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.profileContainer}>
       <Image 
         source={{ uri: 'https://via.placeholder.com/100' }} 
         style={styles.profilePic} 
       />
-      <Text style={styles.name}>{firstName}</Text>
-      <Text style={styles.name}>{lastName}</Text>
-      <Button title="Edit Profile" onPress={onEditPress} />
+      <View style={styles.nameContainer}>
+        <View style={styles.name}>
+          <Text style={styles.nameText}>{firstName}</Text>
+          <Text style={styles.nameText}>{lastName}</Text>
+        </View>
+        <Text style={styles.totalWorkouts}>Total Workouts: </Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginBottom: 20,
+  profileContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start'
+  },
+  nameContainer: {
+    marginLeft: 15,
+    flexDirection: 'column',
+    marginTop: '5%',
+  },
+  name: {
+    flexDirection: 'row',
+  },
+  nameText: {
+    fontSize: fonts.size.title,
+    fontFamily: fonts.style.main,
+    color: colors.text,
+  },
+  totalWorkouts: {
+    fontSize: fonts.size.header2,
+    fontFamily: fonts.style.main,
+    color: colors.text,
   },
   profilePic: {
     width: 100,
     height: 100,
     borderRadius: 50,
-    marginBottom: 10,
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
     marginBottom: 10,
   },
 });
