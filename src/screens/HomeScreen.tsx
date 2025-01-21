@@ -1,29 +1,37 @@
 import React, { useState } from 'react';
-import { View, Button, Modal, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import colors from '../assets/colors';
 import ProfileSection from '../components/home/ProfileSection';
 import WorkoutSummarySection from '../components/home/WorkoutSummarySection';
+import DailyNutritionTracker from '../components/home/MacroSection';
 import profileData from '../components/data/profileData';
 
 const HomeScreen = () => {
- 
-
   return (
-    <View style={styles.container}>
-      <ProfileSection 
-        firstName={profileData.firstName}  
-        lastName={profileData.lastName}    
-      />    
-      <WorkoutSummarySection></WorkoutSummarySection>  
-    </View>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      {/* Profile Section */}
+      <ProfileSection
+        firstName={profileData.firstName}
+        lastName={profileData.lastName}
+      />
+      {/* Workout Summary Section */}
+      <WorkoutSummarySection />
+      {/* Daily Nutrition Tracker */}
+      <DailyNutritionTracker
+        calorieGoal={2000}
+        macros={{ protein: 120, carbs: 250, fats: 60 }}
+      />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: colors.background
+    backgroundColor: colors.background,
+  },
+  contentContainer: {
+    padding: 20, // Add padding inside the ScrollView
   },
 });
 

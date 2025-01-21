@@ -1,23 +1,11 @@
-const dataSets = {
-    button1: [
-      { rowHeader: "Row 1", col1: "A1", col2: "B1" },
-      { rowHeader: "Row 2", col1: "A2", col2: "B2" },
-      { rowHeader: "Row 3", col1: "A3", col2: "B3" },
-      { rowHeader: "Row 4", col1: "A4", col2: "B4" },
-    ],
-    button2: [
-      { rowHeader: "Row 1", col1: "X1", col2: "Y1" },
-      { rowHeader: "Row 2", col1: "X2", col2: "Y2" },
-      { rowHeader: "Row 3", col1: "X3", col2: "Y3" },
-      { rowHeader: "Row 4", col1: "X4", col2: "Y4" },
-    ],
-    button3: [
-      { rowHeader: "Row 1", col1: "P1", col2: "Q1" },
-      { rowHeader: "Row 2", col1: "P2", col2: "Q2" },
-      { rowHeader: "Row 3", col1: "P3", col2: "Q3" },
-      { rowHeader: "Row 4", col1: "P4", col2: "Q4" },
-    ],
-  };
-  
-  export default dataSets;
-  
+const Totals = [
+  // November 2024
+  { timeRange: "Last Week", activities: 8, totalDistance: 3, avgPage: "8:30", totalWeight: 8500, totalTime: "11:00:25" },
+  { timeRange: "This Week", activities: 7, totalDistance: 2, avgPage: "8:15", totalWeight: 9200, totalTime: "10:45:00" },
+  { timeRange: "Last Month", activities: 28, totalDistance: 12, avgPage: "8:32", totalWeight: 85200, totalTime: "42:35:00" },
+  { timeRange: "This Month", activities: 31, totalDistance: 10, avgPage: "8:31", totalWeight: 90000, totalTime: "44:00:30" },
+  { timeRange: "Last Year", activities: 345, totalDistance: 25, avgPage: "8:45", totalWeight: 985000, totalTime: "528:24:06" },
+  { timeRange: "This Year", activities: 211, totalDistance: 24, avgPage: "8:15", totalWeight: 658000, totalTime: "325:00:45" },
+  ]
+
+export default Totals
